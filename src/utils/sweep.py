@@ -25,8 +25,8 @@ def sweepGen(T,w1=20,w2=20000,fs=44100):
     # Parámetros del sweep
     r = np.log(w2/w1)
     l = T / r
-    k = l * w1
-    t = np.linspace(0,T,int(fs*T),endpoint=False)
+    k = (T / r) * 2 * np.pi * w1
+    t = np.linspace(0,T,T*fs)
 
     # Sweep
     sweep = np.sin(k*((np.e**(t/l)) - 1))
