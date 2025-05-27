@@ -1,5 +1,4 @@
 import numpy as np
-import matplotlib.pyplot as plt
 import soundfile as sf
 
 def sweepGen(T,w1=20,w2=20000,fs=44100):
@@ -8,11 +7,11 @@ def sweepGen(T,w1=20,w2=20000,fs=44100):
     con la duración que le indique el usuario.
 
     Nota: si 'sweep.wav' y 'filtInv.wav' ya existen, serán sobreescritos.
+
     Parámetros
     ----------
 
-    T: float
-        Duración ingresada por el usuario de la señal.
+    T: float Duración ingresada por el usuario de la señal.
     w1: int
         Frecuencia inicial del sweep.
     w2: int
@@ -49,21 +48,6 @@ def sweepGen(T,w1=20,w2=20000,fs=44100):
 
     # Generación de los archivos .wav
     sf.write('sweep.wav',sweep,fs)
-    sf.write('filtroInvertido.wav',filtro,fs)
-
-    # Gráficos
-    fig, axs = plt.subplots(2, sharex=True)
-    axs[0].set_title('Sine-sweep')
-    axs[0].set_ylabel('Amplitud')
-    axs[1].set_title('Filtro invertido')
-    axs[1].set_xlabel('Tiempo (s)')
-    axs[1].set_ylabel('Amplitud')
-    axs[0].plot(t, sweep)
-    axs[1].plot(t, filtro)
-    plt.show()
+    sf.write('filtro_invertido.wav',filtro,fs)
 
     return sweep, filtro
-
-# Se llama a la función
-sweep, filtro = sweepGen(10)
-

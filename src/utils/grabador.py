@@ -2,10 +2,21 @@ import numpy as np
 import soundfile as sf
 import sounddevice as sd
 
-def playRec(fs=44100):
+def grabador(fs=44100):
     '''
-    Reproduce un archivo .wav y registra el audio tomado por el dispositivo 
-    seleccionado seleccionado por el usuario en el tiempo elegido.
+    Reproduce un sine-sweep y registra el audio tomado por el dispositivo 
+    seleccionado por el usuario en el tiempo elegido. El registro
+    se guarda en el archivo 'grabacion.wav'
+
+    Nota: si 'grabacion.wav' existe, este será sobreescrito.
+
+    Parámetros
+    ----------
+
+    fs: int
+        Frecuencia de muestreo a la que se quiere grabar.
+    return: Numpy Array
+        Array de la grabación.
     '''
     ## Selección del dispositivo de audio
 
@@ -38,7 +49,3 @@ def playRec(fs=44100):
 
     # Se guarda la grabación en un archivo 'grabacion.wav'
     sf.write('grabacion.wav',grabacion,fs)
-
-# Se llama a la función
-playRec()
-
