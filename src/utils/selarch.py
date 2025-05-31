@@ -12,3 +12,5 @@ def selarch():
     archivo = askopenfilename() 
 
     return archivo
+
+archivo = selarch()

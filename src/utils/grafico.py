@@ -1,7 +1,7 @@
 import numpy as np
 import matplotlib.pyplot as plt
 
-def grafico(t,señal1,señal2,titulo1,titulo2,x,y):
+def grafico2(t,señal1,señal2,titulo1,titulo2,x,y):
     '''
     Grafica una o dos señales en el tiempo.
 
