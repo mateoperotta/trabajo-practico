@@ -51,3 +51,5 @@ def sweepGen(T,w1=20,w2=20000,fs=44100):
     sf.write('filtro_invertido.wav',filtro,fs)
 
     return sweep, filtro
+
+sweep = sweepGen(30)

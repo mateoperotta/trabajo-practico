@@ -2,7 +2,7 @@ import numpy as np
 import soundfile as sf
 import matplotlib.pyplot as plt
 
-def irsint(frecuencias,fs=48000):
+def irsint(frecuencias,fs=44100):
     '''
     Recibe un diccionario con frecuencias de banda de octava y sus
     respectivos T60 para generar la calcular la respuesta al impulso
@@ -57,7 +57,6 @@ t60 = {
     2000:6.03,
     4000:4.03,
     8000:2,
-    16000:18.86
 }
 
 # 
