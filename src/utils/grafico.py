@@ -12,7 +12,9 @@ def grafico1(señal,titulo,fs=44100):
     titulo: string
         Titulo del gráfico.
     fs: int
-        Frecuencia de muestreo
+        Frecuencia de muestreo.
+    return: Plot
+        Grafica la señal ingresada en el tiempo.
     '''
     # Calcula el tiempo correspondiente a cada valor de la señal
     tiempo = np.arange(len(señal)) / fs
@@ -38,7 +40,6 @@ def grafico2(t,señal1,señal2,titulo1,titulo2,x,y):
 
     Parámetros:
     ----------
-    
     t: float
         Duración de la señal.
     señal1: Numpy Array
@@ -53,8 +54,8 @@ def grafico2(t,señal1,señal2,titulo1,titulo2,x,y):
         Nombre de la variable del eje x.
     y: string
         Nombre de la variable del eje y.
-    returns: Matplotlib plot
-        Gráfico/s de la/s señal/es en el tiempo.
+    return: Matplotlib plot
+        Gráficos de las señales en el tiempo.
     '''
     # Gráfico de dos señales
     fig, axs = plt.subplots(2, sharex=True)
@@ -65,16 +66,4 @@ def grafico2(t,señal1,señal2,titulo1,titulo2,x,y):
     axs[1].set_ylabel(y)
     axs[0].plot(t,señal1)
     axs[1].plot(t,señal2)
-
-    fig, axs = plt.subplots(2, sharex=True)
-
-    axs[0].set_title(titulo1)
-    axs[0].set_ylabel(y)
-    axs[0].plot(t,señal1)
-
-    axs[1].set_title(titulo2)
-    axs[1].set_ylabel(y)
-    axs[1].set_xlabel(x)
-    axs[1].plot(t,señal2)
-
     plt.show()

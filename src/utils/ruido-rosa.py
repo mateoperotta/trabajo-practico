@@ -2,7 +2,7 @@ import numpy as np
 import pandas as pd
 import soundfile as sf
 
-def ruidoRosa_voss(t,fs=44100,ncols=16):
+def ruidoRosa(t,fs=44100,ncols=16):
     """
     Genera ruido rosa utilizando el algoritmo de Voss-McCartney (https://www.dsprelated.com/showabstract/3933.php).
     
@@ -16,8 +16,8 @@ def ruidoRosa_voss(t,fs=44100,ncols=16):
         Frecuencia de muestreo en Hz de la señal. Por defecto el valor es 44100 Hz.
     ncols: int
         Determina el número de fuentes a aleatorias a agregar.
-    returns: NumPy array
-        Datos de la señal generada.
+    returns: Numpy Array
+        Devuelve el array correspondiente al ruido rosa.
     """
     # Generación del array con contenido aleatorio.
     array = np.full((fs*t, ncols), np.nan)
@@ -42,6 +42,6 @@ def ruidoRosa_voss(t,fs=44100,ncols=16):
     ruido = ruido / valor_max
 
     # Generación del archivo 'ruidoRosa.wav'.
-    sf.write('ruidoRosa.wav',ruido,fs)
+    sf.write('ruido_rosa.wav',ruido,fs)
     
-    return ruido, fs
+    return ruido

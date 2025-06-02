@@ -10,7 +10,6 @@ def sweepGen(T,w1=20,w2=20000,fs=44100):
 
     Parámetros
     ----------
-
     T: float Duración ingresada por el usuario de la señal.
     w1: int
         Frecuencia inicial del sweep.
@@ -18,7 +17,7 @@ def sweepGen(T,w1=20,w2=20000,fs=44100):
         Frecuencia final del sweep.
     fs: int
         Frecuencia de muestre.
-    returns: Numpy Array, Numpy Array
+    return: Numpy Array, Numpy Array
         Se devuelven los arrays correspondientes al sine-sweep y el filtro invertido.
     '''
     # Parámetros del sweep
@@ -51,5 +50,3 @@ def sweepGen(T,w1=20,w2=20000,fs=44100):
     sf.write('filtro_invertido.wav',filtro,fs)
 
     return sweep, filtro
-
-sweep = sweepGen(30)

@@ -5,12 +5,10 @@ def selarch():
     '''
     Abre una ventana para seleccionar un archivo.
 
-    return: Archivo
+    return: Ruta
         Devuelve la ruta del archivo en forma de variable.
     '''
     Tk().withdraw() 
-    archivo = askopenfilename() 
+    ruta = askopenfilename() 
 
-    return archivo
-
-archivo = selarch()
+    return ruta

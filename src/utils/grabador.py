@@ -12,18 +12,14 @@ def grabador(fs=44100):
 
     Parámetros
     ----------
-
     fs: int
         Frecuencia de muestreo a la que se quiere grabar.
     return: Numpy Array
-        Array de la grabación.
+        Devuelve el array correspondiente a la grabación.
     '''
     ## Selección del dispositivo de audio
-
     sentinela = ""
-
     while sentinela != "s":
-
         # Imprime los dispositivos disponibles
         print(f"\n{sd.query_devices()}")
 
@@ -49,3 +45,5 @@ def grabador(fs=44100):
 
     # Se guarda la grabación en un archivo 'grabacion.wav'
     sf.write('grabacion.wav',grabacion,fs)
+
+    return grabacion

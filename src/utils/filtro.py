@@ -2,14 +2,24 @@ import numpy as np
 from scipy import signal
 import soundfile as sf
 
-def filtro():
+def filtro(ir):
     '''
-    '''
+    Genera filtros de cada frecuencia centra de la respuesta al impulso.
+    Genera un archivo wav por cada frecuencia filtada.
 
+    Nota: si los archivos wav ya existen, serán reemplazadas.
+
+    Parámetros
+    ----------
+    ir: Ruta
+        Ruta donde se encuentra la respuesta al impulso en formato wav.
+    return: Lista
+        Lista con los arrays correspondientes a los filtros por banda de octava.
+    '''
+    # Lista donde se guardan las señales filtradas
     filtros = []
 
-    audio, fs = sf.read('./impulse_response.wav')
-
+    # Bandas por octava
     bandasOctava = [ 
         31.25,
         62.5,
@@ -22,6 +32,9 @@ def filtro():
         8000
     ]
 
+    # Se ingresa la respuesta al impulso como archivo wav
+    audio, fs = sf.read(f'{ir}')
+
     for fi in bandasOctava:
         #Selección de octava - G = 1.0/2.0 / 1/3 de Octava - G=1.0/6.0
         G = 1.0/2.0
@@ -33,8 +46,8 @@ def filtro():
         lowerCutoffFrequency_Hz=centerFrequency_Hz/factor;
         upperCutoffFrequency_Hz=centerFrequency_Hz*factor;
 
-        print('Frecuencia de corte inferior: ', round(lowerCutoffFrequency_Hz), 'Hz')
-        print('Frecuencia de corte superior: ', round(upperCutoffFrequency_Hz), 'Hz')
+        #print('Frecuencia de corte inferior: ', round(lowerCutoffFrequency_Hz), 'Hz')
+        #print('Frecuencia de corte superior: ', round(upperCutoffFrequency_Hz), 'Hz')
 
         # El orden del filtro varía con la frecuencia central
 
@@ -70,5 +83,3 @@ def filtro():
         sf.write(f'filtro_{fi}Hz.wav',filt,fs)
 
     return filtros
-
-llamada = filtro()

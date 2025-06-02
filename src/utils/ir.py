@@ -1,11 +1,20 @@
 import numpy as np
 import soundfile as sf
-import matplotlib.pyplot as plt
 
-def ir():
+def ir(grabacion,filtro_inverso):
     '''
+    Obtiene la respuesta al impulso de un recinto ingresando la grabación del 
+    sine-sweep en el lugar y su respectivo filtro inverso.
+
+    Parámetros
+    ----------
+    grabacion: Numpy Array
+        Registro del sine-sweep en el recinto.
+    filtro_inverso: Numpy Array
+        Filtro inverso del sine-sweep grabado en el recinto.
+    return: Numpy Array
+        Devuelve la respuesta al impulso del recinto.
     '''
-    
     # Se cargan los archivos de audio del sweep en el recinto y el filtro inverso
     k, fs = sf.read('./filtro_inverso.wav')
     y, fs = sf.read('./mediciones/Toma_n3_a-03.wav')
@@ -41,13 +50,3 @@ def ir():
     sf.write('impulse_response.wav',h,fs)
 
     return h
-    
-h = ir()
-print(h)
-plt.plot(h)
-plt.title("Respuesta al Impulso")
-plt.xlabel("Muestras")
-plt.ylabel("Amplitud")
-plt.grid()
-plt.show()
-
