@@ -1,7 +1,7 @@
 import numpy as np
 import soundfile as sf
 
-def ir(grabacion,filtro_inverso):
+def ir(grabacion,filtro_inverso,norm=False):
     '''
     Obtiene la respuesta al impulso de un recinto ingresando la grabación del 
     sine-sweep en el lugar y su respectivo filtro inverso.
@@ -12,6 +12,8 @@ def ir(grabacion,filtro_inverso):
         Registro del sine-sweep en el recinto.
     filtro_inverso: Numpy Array
         Filtro inverso del sine-sweep grabado en el recinto.
+    norm: Bulean
+        Si es True, la señal del return será normalizada.
     return: Numpy Array
         Devuelve la respuesta al impulso del recinto.
     '''
@@ -42,11 +44,15 @@ def ir(grabacion,filtro_inverso):
 
     # Asegurate de no salirte del array
     h = h[inicio:fin] if fin < len(h) else h[inicio:]
+
+    # Normalización (opcional)
+    if norm == True:
+        h /= np.max(np.abs(h))
     
     # Normalización y formato float32
-    h /= np.max(np.abs(h))
-    h = h.astype(np.float32)
+    h_audio = h / np.max(np.abs(h))
+    h_audio = h_audio.astype(np.float32)
 
-    sf.write('impulse_response.wav',h,fs)
+    sf.write('impulse_response.wav',h_audio,fs)
 
     return h

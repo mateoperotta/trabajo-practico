@@ -34,7 +34,48 @@ def grafico1(señal,titulo,fs=44100):
     # Muestra la gráfica
     plt.show()
 
-def grafico2(t,señal1,señal2,titulo1,titulo2,x,y):
+def grafico2(señal1, señal2, señal3, señal4, etiqueta1, etiqueta2, etiqueta3, etiqueta4, titulo, fs=44100):
+    '''
+    Grafica dos señales superpuestas en el dominio del tiempo.
+
+    Parámetros:
+    ----------
+    señal1: Numpy Array
+        Primera señal a graficar.
+    señal2: Numpy Array
+        Segunda señal a graficar.
+    etiqueta1: string
+        Etiqueta de la primera señal (para la leyenda).
+    etiqueta2: string
+        Etiqueta de la segunda señal.
+    titulo: string
+        Título del gráfico.
+    fs: int
+        Frecuencia de muestreo.
+    '''
+    # Tiempo para el eje x (usa el largo máximo entre ambas señales)
+    n = max(len(señal1), len(señal2))
+    tiempo = np.arange(n) / fs
+
+    # Crear gráfico
+    plt.figure(figsize=(10, 6))
+    plt.plot(tiempo, señal1, label=etiqueta1, color='blue')
+    plt.plot(tiempo, señal3, label=etiqueta3, color='green',alpha=0.8)
+    plt.plot(tiempo, señal2, label=etiqueta2, color='red')
+    plt.plot(tiempo, señal4, label=etiqueta4, color='yellow',linestyle=':')
+
+
+    # Etiquetas y título
+    plt.xlabel("Tiempo (s)")
+    plt.ylabel("Amplitud")
+    plt.ylim(-100,0)
+    plt.title(titulo)
+    plt.grid(True)
+    plt.legend()
+    plt.tight_layout()
+    plt.show()
+
+def grafico3(t,señal1,señal2,titulo1,titulo2,x='Tiempo (s)',y='Amplitud (dB)'):
     '''
     Grafica una o dos señales en el tiempo.
 

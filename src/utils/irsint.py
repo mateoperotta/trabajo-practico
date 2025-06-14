@@ -1,7 +1,7 @@
 import numpy as np
 import soundfile as sf
 
-def irsint(frecuencias,fs=44100):
+def irsint(frecuencias,fs=44100,norm=False):
     '''
     Recibe un diccionario con frecuencias de banda de octava y sus
     respectivos T60 para generar la calcular la respuesta al impulso
@@ -13,6 +13,8 @@ def irsint(frecuencias,fs=44100):
         Diccionario que contenga como keys las frecuencias centrales y como values sus respectivos T60.
     fs: int
         Frecuencia de muestreo deseada.
+    norma: Buleano
+        Si es True, la señal del return estará normalizada.
     return: Numpy Array
         Sintetiza la respuesta al impulso de un recinto conocido.
     '''
@@ -44,8 +46,11 @@ def irsint(frecuencias,fs=44100):
 
     # Suma de frecuencias centrales
     ir = np.sum(arrays,axis=0)
-    t = np.linspace(0,np.size(ir)/fs,np.size(ir),endpoint=False)
-    ir /= np.max(abs(ir))
+    #t = np.linspace(0,np.size(ir)/fs,np.size(ir),endpoint=False)
+
+    # Normalización (opcioal)
+    if norm == True:
+        ir /= np.max(abs(ir))
 
     # Generación del .wav de la respuesta al impulso
     sf.write('ir.wav',ir,fs)

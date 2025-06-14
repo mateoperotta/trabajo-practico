@@ -1,7 +1,7 @@
 import numpy as np
 import soundfile as sf
 
-def sweepGen(T,w1=20,w2=20000,fs=44100):
+def sweepGen(T,w1=20,w2=20000,fs=44100,norm=False):
     '''
     Genera un sine-sweep logarítmico y su filtro invertido 
     con la duración que le indique el usuario.
@@ -38,8 +38,9 @@ def sweepGen(T,w1=20,w2=20000,fs=44100):
     filtro = np.multiply(modulacion,sweepInv)
 
     # Normalización
-    sweep /= np.max(np.abs(sweep))
-    filtro /= np.max(np.abs(filtro))
+    if norm == True:
+        sweep /= np.max(np.abs(sweep))
+        filtro /= np.max(np.abs(filtro))
 
     # Escalado a 16 bits
     #sweep *= 32767
@@ -49,4 +50,4 @@ def sweepGen(T,w1=20,w2=20000,fs=44100):
     sf.write('sweep.wav',sweep,fs)
     sf.write('filtro_invertido.wav',filtro,fs)
 
-    return sweep, filtro
+    return sweep, filtro, fs
