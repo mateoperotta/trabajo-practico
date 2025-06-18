@@ -2,7 +2,7 @@ import numpy as np
 import pandas as pd
 import soundfile as sf
 
-def ruidoRosa(t,fs=44100,ncols=16,norm=False):
+def ruido_rosa(t,fs=44100,ncols=16,norm=False):
     """
     Genera ruido rosa utilizando el algoritmo de Voss-McCartney (https://www.dsprelated.com/showabstract/3933.php).
     

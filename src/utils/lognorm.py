@@ -24,7 +24,6 @@ def lognorm(signal):
     # Cociente entre el valor absoluto y el máximo
     signal_norm = signal_abs / signal_max
     signal_norm_segura = np.clip(signal_norm, 1e-12, None)
-    #eps = 1e-12
 
     # Transformación a escala logarítmica
     r = 20 * np.log10(signal_norm_segura)

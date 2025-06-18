@@ -34,7 +34,7 @@ def grafico1(señal,titulo,fs=44100):
     # Muestra la gráfica
     plt.show()
 
-def grafico2(señal1, señal2, señal3, señal4, etiqueta1, etiqueta2, etiqueta3, etiqueta4, titulo, fs=44100):
+def grafico2(señal1, señal2, etiqueta1, etiqueta2, titulo, fs=44100):
     '''
     Grafica dos señales superpuestas en el dominio del tiempo.
 
@@ -60,9 +60,7 @@ def grafico2(señal1, señal2, señal3, señal4, etiqueta1, etiqueta2, etiqueta3
     # Crear gráfico
     plt.figure(figsize=(10, 6))
     plt.plot(tiempo, señal1, label=etiqueta1, color='blue')
-    plt.plot(tiempo, señal3, label=etiqueta3, color='green',alpha=0.8)
     plt.plot(tiempo, señal2, label=etiqueta2, color='red')
-    plt.plot(tiempo, señal4, label=etiqueta4, color='yellow',linestyle=':')
 
 
     # Etiquetas y título
